@@ -30,6 +30,8 @@
         $ python perf_runner.py -t test_sg_create,test_ssh_one_instance -i 30 -w 2 
 
 
+## Notes
+    * Currently requires eventlet 0.9.15, 0.9.16 has bugs that don't work with paramiko
 
 
 
