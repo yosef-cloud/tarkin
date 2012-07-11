@@ -3,6 +3,13 @@ import time
 
 from stopwatch import StopWatch
 
+counters =  {}
+
+def emit_accumulations():
+   if counters!={}:
+       print counters
+
+
 class BaseTest:
     def __init__(self, log_file=None):
         self.results = []
@@ -11,13 +18,21 @@ class BaseTest:
 
     def __del__(self):
         self.log('Ending %s test' % self.__class__.__name__)
-        
+
     def add_result(self, **kwargs):
         result = {}
         for k in kwargs:
             result[k] = kwargs[k]
         self.results.append(result)
-        self.log('Adding result: %s' % str(result))        
+        self.log('Adding result: %s' % str(result))
+
+    def counter_increment(self, **kwargs):
+        for k in kwargs:
+            if k in counters:
+                counters[k] += kwargs[k]
+	    else:
+                counters[k] =  kwargs[k]
+            self.log('update counter %s' % k)
 
     def emit_results(self, format='human'):
 
@@ -28,9 +43,9 @@ class BaseTest:
 
         if format == 'human':
             for r in self.results:
-                extra = ",".join(["%s:%s"%(x,r[x]) for x in r.keys() if x not in ['result', 'test_name']])
+                extra = ", ".join(["%s:%s"%(x,r[x]) for x in r.keys() if x not in ['result', 'test_name']])
                 line = '%s %s (%s)' % (r['test_name'], pass_fail[r['result']], extra)
-                print '%s' % line 
+                print '%s' % line
 
     def log(self, msg):
         if not self.log_file:
@@ -46,5 +61,5 @@ class BaseTest:
 
     def main(self):
         print "Override this in your test"
-                
+
 
