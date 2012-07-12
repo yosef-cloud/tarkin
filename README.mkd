@@ -29,21 +29,44 @@
 
         $ python perf_runner.py -t test_sg_create,test_ssh_one_instance -i 30 -w 2 
 
-## Definitions
+## Tests Defined
 
-check_for_one_ami
-instance_correct_ip
-instance_io
-instance_ping_google
-keypair
-l3_instance_network_settings
-ping_one_instance
-run_one_instance
-sg_create
-sg_good_bad_source_group
-sg_instance_block_all
-spawn_speed
-ssh_one_instance
+* check_for_one_ami - This test checks to see if there is at least on AMI available
+
+* instance_correct_ip - This test will spawn a VM and run ifconfig in the VM to see if the ip
+                      of eth0 is the same IP scheduled by Nova to the VM. 
+
+* instance_io - Basic disk I/O benchmark test
+
+* instance_ping_google - This test will log into a VM and attempt to ping google using an IP address as well as a DNS name.
+
+* keypair - This test will generate a random named keypair
+
+* l3_instance_network_settings - This test does several network related tests from a VM:
+                               Private IPv4 matches what is listed in ifconfig,
+                               The netmask is 255.255.255.252 (/30),
+                               The broadcast IP is (private IP plus 1),
+                               The last 4 octets of MAC address contains IP address,
+                               The routing table of VM has proper gateway address,
+                               The default gateway can be pinged
+
+* ping_one_instance - This test will choose the first available AMI, spawn and attempt to ping it
+
+* run_one_instance - This test will choose the first available AMI, spawn and wait for it to get into running state.
+
+* sg_create - This test will create a randomly named security group
+
+* sg_good_bad_source_group - This test will create three groups, one group called 'dest' can only receive ICMP and SSH
+                           connections from the 'good' group. 'bad' is not trusted by 'dest' group. The tests include
+                           'good' group attempting to ping and SSH to dest group as well as 'bad' group attempting to 
+                           ping and SSH into 'dest' group.
+
+* sg_instance_block_all - A VM is spawn and is associated with an empy security group. The test is to make sure that the
+                        VM is not pingable. 
+
+* spawn_speed - Test is used to calculate the average time to spawn a VM
+
+* ssh_one_instance - This test will spawn a VM and attempt to run 'uptime' via ssh
 
 
 ## Notes
