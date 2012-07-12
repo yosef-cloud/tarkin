@@ -14,7 +14,7 @@ class InstanceIO(SSHInstanceTest):
             self.ssh_cmd_simple(instance, keyname, 'sudo apt-get install -y bonnie++')
         
             sw = self.get_stopwatch()
-            output = self.ssh_cmd_simple(instance, keyname, 'su ubuntu -c \'cd;bonnie++\'')
+            output = self.ssh_cmd_simple(instance, keyname, 'bonnie++')
             bonnie_time = sw.stop()
             self.log(output)
             if len(output[0])>20:
@@ -28,7 +28,7 @@ class InstanceIO(SSHInstanceTest):
 
 
            # delete keypair
-        self.add_result(test_name=self.__class__.__name__, result=_result,bonnie_time=bonnie_time)
+        self.add_result(test_name=self.__class__.__name__, result=_result,bonnie_time=bonnie_time, host=host)
 
 
 if __name__ == '__main__':
