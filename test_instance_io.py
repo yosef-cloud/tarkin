@@ -21,7 +21,7 @@ class InstanceIO(SSHInstanceTest):
                 _result = True
             if _result:
                 host = '.'.join(instance.private_ip_address.split('.')[:2])
-                self.counter_increment(**{"VM_count-%s" % host: 1,"bonnie_time-%s" % host: bonnie_time})
+                self.counter_increment(**{"VM_count_bonnie-%s" % host: 1,"bonnie_time-%s" % host: bonnie_time})
             self.terminate(instance)
             self.delete_key_pair(keyname)
  
