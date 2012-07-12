@@ -110,5 +110,10 @@ class NovaEC2Test(BaseTest):
             else:
                 time.sleep(1)
 
-    
+    def allocate_address(self):
+        return self.ec2_conn.allocate_address()
+
+    def release_address(self, address):
+        return self.ec2_conn.release_address(public_ip=address)
+
 
