@@ -5,7 +5,7 @@ from stopwatch import StopWatch
 
 counters =  {}
 
-def emit_accumulations():
+def emit_counters():
    if counters!={}:
        print counters
 
@@ -46,6 +46,10 @@ class BaseTest:
                 extra = ", ".join(["%s:%s"%(x,r[x]) for x in r.keys() if x not in ['result', 'test_name']])
                 line = '%s %s (%s)' % (r['test_name'], pass_fail[r['result']], extra)
                 print '%s' % line
+
+
+    def emit_counters(self):
+        emit_counters()
 
     def log(self, msg):
         if not self.log_file:

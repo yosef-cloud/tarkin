@@ -1,7 +1,8 @@
 
 from lib.novatest import NovaEC2Test
 
-class PingOneInstance(NovaEC2Test):
+class SpawnSpeed(NovaEC2Test):
+    """Uses counter to measure average spawn speed per node"""
     def main(self):
         self.connect_api()
         _result = False
@@ -16,12 +17,13 @@ class PingOneInstance(NovaEC2Test):
                 _result = True
         self.add_result(test_name=self.__class__.__name__, result=_result, time_till_running=time_till_running, time_till_ping=time_till_ping, ip=instance.private_ip_address)
         host=None
-	host = '.'.join(instance.private_ip_address.split('.')[:2])
-	self.counter_increment(**{"VM_count-%s" % host: 1,"time_till_ping-%s" % host: time_till_ping})
+	if _result:
+   	    host = '.'.join(instance.private_ip_address.split('.')[:2])
+	    self.counter_increment(**{"VM_count-%s" % host: 1,"time_till_ping-%s" % host: time_till_ping})
         self.terminate(instance)
 
 if __name__ == '__main__':
-    o = PingOneInstance()
+    o = SpawnSpeed()
     o.main()
     o.emit_results()
-    o.emit_accumulations()
+    o.emit_counters()

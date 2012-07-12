@@ -66,7 +66,7 @@ if __name__ == '__main__':
         print "workers: %s" % options.workers
         r = PerfRunner()
         r.run(options.tests, int(options.iterations), int(options.workers))
-	basetest.emit_accumulations()
+	basetest.emit_counters()
     else:
         print "Usage: perf_runner.py -t test_check_for_one_ami -i 10 -w 2" 
         print "       perf_runner.py -t <TEST_NAME> -i <ITERATIONS> -w <WORKERS>"
