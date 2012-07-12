@@ -29,6 +29,22 @@
 
         $ python perf_runner.py -t test_sg_create,test_ssh_one_instance -i 30 -w 2 
 
+## Definitions
+
+check_for_one_ami
+instance_correct_ip
+instance_io
+instance_ping_google
+keypair
+l3_instance_network_settings
+ping_one_instance
+run_one_instance
+sg_create
+sg_good_bad_source_group
+sg_instance_block_all
+spawn_speed
+ssh_one_instance
+
 
 ## Notes
 
