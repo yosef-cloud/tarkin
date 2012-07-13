@@ -9,11 +9,9 @@ class SSHCommand():
         self.key_path = key_path
 
     def cmdexec(self, remote_host, cmd):
-        ssh_cmd = "ssh -o 'StrictHostKeyChecking no' ubuntu@%s -i %s %s" % (remote_host, self.key_path, cmd)
-        process = subprocess.Popen(ssh_cmd, shell=True,
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        output,stderr = process.communicate()
-        status = process.poll()
+        ssh_cmd = "ssh  -t -o CheckHostIP=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@%s -i %s %s" % (remote_host, self.key_path, cmd)
+        output = subprocess.check_output(ssh_cmd, shell=True,
+            stderr=subprocess.STDOUT)
         return (output,'','')
 
 if __name__ == '__main__':
