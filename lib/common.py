@@ -60,6 +60,12 @@ def checkping(instance):
     else:
         return False
 
+def checkpingaddr(address):
+    if os.system("ping -c 1 %s > /dev/null" % address) == 0:
+        return True
+    else:
+        return False
+
 def elapsed_time(start):
     return int(time.time() - start)
 
