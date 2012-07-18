@@ -116,4 +116,11 @@ class NovaEC2Test(BaseTest):
     def release_address(self, address):
         return self.ec2_conn.release_address(public_ip=address)
 
+    def associate_address(self, instance, address):
+        return self.ec2_conn.associate_address(instance, address)
 
+    def disassociate_address(self, address):
+        return self.ec2_conn.disassociate_address(address)
+
+    def get_all_addresses(self):
+        return self.ec2_conn.get_all_addresses()
