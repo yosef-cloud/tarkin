@@ -68,6 +68,96 @@
 
 * **ssh_one_instance** - This test will spawn a VM and attempt to run 'uptime' via ssh
 
+## Example Output
+jc@z3:~/jc/tarkin_natter/tarkin$ . novarc
+
+jc@z3:~/jc/tarkin_natter/tarkin$ python run_tests.py 
+
+\# Running: test_check_for_one_ami
+
+CheckForOneAMI PASS (time_elapsed:0.169898033142)
+
+\# Running: test_floating_allocate
+
+FloatingAllocate_allocate PASS ()
+
+FloatingAllocate_release PASS ()
+
+\# Running: test_instance_correct_ip
+
+InstanceCorrectIP PASS (instance_id:i-00000696)
+
+\# Running: test_instance_ping_google
+
+InstancePingGoogle_ping_ip PASS ()
+
+InstancePingGoogle_ping_dns PASS ()
+
+\# Running: test_keypair
+
+KeyPair PASS ()
+
+\# Running: test_l3_instance_network_settings
+
+L3InstanceNetworkSettings_correct_ip PASS ()
+
+L3InstanceNetworkSettings_correct_netmask PASS ()
+
+L3InstanceNetworkSettings_correct_broadcast PASS ()
+
+L3InstanceNetworkSettings_correct_mac PASS ()
+
+L3InstanceNetworkSettings_correct_gw PASS ()
+
+L3InstanceNetworkSettings_ping_gw PASS ()
+
+\# Running: test_ping_one_instance
+
+PingOneInstance PASS (time_till_ping:16.7450270653)
+
+\# Running: test_run_one_instance
+
+RunOneInstance PASS (time_till_running:9.87155604362)
+
+\# Running: test_sg_create
+
+SGCreate PASS (ellapsed_time:0.100999116898)
+
+\# Running: test_sg_good_bad_source_group
+
+SGGoodBadSourceGroup_good_ping_dest PASS ()
+
+SGGoodBadSourceGroup_bad_ping_dest PASS ()
+
+SGGoodBadSourceGroup_good_ssh_dest PASS ()
+
+SGGoodBadSourceGroup_bad_ssh_dest PASS ()
+
+\# Running: test_sg_instance_block_all
+
+SGInstanceBlockAll PASS ()
+
+\# Running: test_spawn_speed
+
+SpawnSpeed PASS (time_till_ping:32.6743571758, ip:10.10.0.74, time_till_running:26.166697979)
+
+\# Running: test_ssh_one_instance
+
+SSHOneInstance PASS ()
+
+\# Running: test_floating_associate
+
+FloatingAssociateassoc PASS ()
+
+FloatingAssociateping PASS ()
+
+FloatingAssociaterelease PASS ()
+
+FloatingAssociatedisassoc PASS ()
+
+* The format is: TEST_NAME PASS|FAIL (ADDITIONAL_INFO)
+
+
 
 ## Notes
 
